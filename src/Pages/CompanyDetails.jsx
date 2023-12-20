@@ -17,8 +17,9 @@ const CompanyDetails = () => {
                 country: "",
             },
             validationSchema: companyDetailsSchema,
-            onSubmit: (values) => {
+            onSubmit: (values, actions) => {
                 console.log("Form submitted with values:", values);
+                actions.resetForm();
             },
         });
     const handleSaveClick = () => {

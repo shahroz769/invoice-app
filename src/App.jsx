@@ -5,9 +5,9 @@ import CompanyDetails from "./Pages/CompanyDetails";
 function App() {
     return (
         <>
-            {/* <Home /> */}
+            <Home />
             {/* <DetailedInvoice /> */}
-            <CompanyDetails />
+            {/* <CompanyDetails /> */}
         </>
     );
 }
