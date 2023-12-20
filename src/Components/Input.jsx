@@ -23,7 +23,7 @@ const Input = ({
                     {label}
                 </p>
                 {error && touched && (
-                    <p style={{ color: "var(--9)" }}>Required</p>
+                    <p style={{ color: "var(--9)" }}>{error}</p>
                 )}
             </div>
             <input
