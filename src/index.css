@@ -1,0 +1,92 @@
+@font-face {
+    font-family: "League Spartan";
+    src: url("./assets/fonts/LeagueSpartan-Bold.woff2") format("woff2");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "League Spartan";
+    src: url("./assets/fonts/LeagueSpartan-Medium.woff2") format("woff2");
+    font-weight: 500;
+}
+
+html {
+    background-color: var(--11);
+}
+
+:root {
+    --0: #ffffff;
+    --1: #7c5dfa;
+    --2: #9277ff;
+    --3: #1e2139;
+    --4: #252945;
+    --5: #dfe3fa;
+    --6: #888eb0;
+    --7: #7e88c3;
+    --8: #0c0e16;
+    --9: #ec5757;
+    --10: #ff9797;
+    --11: #f8f8fb;
+    --12: #141625;
+    --13: #f9fafe;
+    --14: #373b53;
+}
+
+* {
+    font-family: "League Spartan";
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#root {
+    height: 100svh;
+    display: flex;
+    justify-content: center;
+}
+
+img {
+    display: block;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: var(--8);
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.75px;
+    color: var(--8);
+}
+
+h3 {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.25px;
+    color: var(--8);
+}
+
+h4 {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.25px;
+    color: var(--8);
+}
+
+p {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.1px;
+    color: var(--8);
+}
+
+span {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.1px;
+    color: var(--8);
+}
