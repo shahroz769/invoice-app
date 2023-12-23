@@ -57,3 +57,10 @@
     align-items: center;
     padding-right: 24px;
 }
+
+.items-error{
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.1px;
+    color: var(--9);
+}

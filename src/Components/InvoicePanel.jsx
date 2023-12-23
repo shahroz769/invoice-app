@@ -1,11 +1,12 @@
 import "./css/invoicepanel.css";
 import Input from "../Components/Input";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import deleteIcon from "../assets/images/icon-delete.svg";
 import { useFormik } from "formik";
 import { invoicePanelDataSchema } from "../schemas/invoicePanelDataSchema.jsx";
 
 const InvoicePanel = ({ isOpen, onClose }) => {
+    const [hasMatchingKeys, setHasMatchingKeys] = useState(false);
     const [itemsListCount, setItemsListCount] = useState(1);
     const [itemsListArray, setItemsListArray] = useState([
         { serial: itemsListCount, itemName: "", qty: "", price: "" },
@@ -53,14 +54,17 @@ const InvoicePanel = ({ isOpen, onClose }) => {
     });
 
     const handleSaveClick = () => {
-        const substringsToCheck = ["itemName", "qty", "price"];
-        const hasMatchingKeys = Object.keys(errors).some((key) =>
-            substringsToCheck.some((substring) => key.includes(substring))
-        );
-        console.log("Does any key include the substrings:", hasMatchingKeys);
-        console.log(errors);
+        // console.log(errors);
         handleSubmit();
     };
+    useEffect(() => {
+        const substringsToCheck = ["itemName", "qty", "price"];
+        const calculatedHasMatchingKeys = Object.keys(errors).some((key) =>
+            substringsToCheck.some((substring) => key.includes(substring))
+        );
+        setHasMatchingKeys(calculatedHasMatchingKeys);
+        console.log(calculatedHasMatchingKeys);
+    }, [errors]);
 
     return (
         <>
@@ -84,6 +88,7 @@ const InvoicePanel = ({ isOpen, onClose }) => {
                                     id="clientName"
                                     type="text"
                                     label="Client’s Name"
+                                    errors={errors}
                                 />
                             </div>
                             <div className="invoice-panel-input-2">
@@ -183,9 +188,16 @@ const InvoicePanel = ({ isOpen, onClose }) => {
                                     style={{
                                         color: "var(--1)",
                                         marginBottom: "16px",
+                                        display: "flex",
+                                        justifyContent: "space-between",
                                     }}
                                 >
                                     Items List
+                                    {hasMatchingKeys && (
+                                        <span className="items-error">
+                                            Required
+                                        </span>
+                                    )}
                                 </h4>
                                 <div className="invoice-panel-items-names">
                                     <div className="invoice-panel-items-names-header">
