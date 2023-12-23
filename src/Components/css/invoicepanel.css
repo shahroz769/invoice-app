@@ -1,0 +1,173 @@
+.invoice-panel-parent {
+    background-color: var(--0);
+    height: 100svh;
+    width: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 0 20px 20px 0;
+    z-index: 90;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.invoice-panel-background {
+    height: 100svh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 90;
+    background-color: #00000080;
+}
+
+.invoice-panel-main {
+    margin-left: 104px;
+    padding: 56px;
+    padding-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.invoice-panel-input-4 {
+    display: flex;
+    gap: 24px;
+}
+
+.invoice-panel-input-5 {
+    display: flex;
+    width: 100%;
+    margin-top: 24px;
+    gap: 24px;
+}
+
+.invoice-panel-input-5 .input{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.invoice-panel-input-5 > * {
+    flex: 1;
+}
+
+.invoice-panel-main h2 {
+    margin-bottom: 24px;
+}
+
+.invoice-panel-items-list {
+    margin-top: 12px;
+}
+
+.invoice-panel-items-names-body {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-direction: column;
+}
+
+.invoice-panel-items-names-inputs-parent {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.invoice-panel-items-names {
+    display: flex;
+    padding-bottom: 10px;
+}
+
+.invoice-panel-items-names-header {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+}
+
+.invoice-panel-items-names-header p {
+    color: var(--7);
+}
+
+.invoice-panel-items-names-inputs {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.invoice-panel-items-names .invoice-panel-items-remove {
+    width: 3px;
+}
+
+.invoice-panel-add-new-item {
+    background-color: #f9fafe;
+    padding: 16px 24px;
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    margin-top: 18px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.invoice-panel-add-new-item h4 {
+    color: var(--7);
+}
+
+.invoice-panel-buttons {
+    position: sticky;
+    width: 100%;
+    bottom: 0;
+    background-color: var(--0);
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+    padding-left: 160px;
+    padding-right: 56px;
+    border-radius: 0 20px 20px 0;
+    box-shadow: 0 0px 100px #0000001a;
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.invoice-panel-buttons-right {
+    display: flex;
+    gap: 8px;
+}
+
+.invoice-panel-buttons-discard {
+    background-color: #f9fafe;
+    padding: 16px 24px;
+    border-radius: 24px;
+}
+
+.invoice-panel-buttons-discard h4 {
+    color: var(--7);
+}
+
+.invoice-panel-buttons-draft {
+    background-color: #373b53;
+    padding: 16px 24px;
+    border-radius: 24px;
+}
+
+.invoice-panel-buttons-draft h4 {
+    color: var(--6);
+}
+
+.invoice-panel-buttons-save {
+    background-color: var(--1);
+    padding: 16px 24px;
+    border-radius: 24px;
+}
+
+.invoice-panel-buttons-save h4 {
+    color: var(--0);
+}
+
+.invoice-panel-input-5 .input-date{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

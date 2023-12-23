@@ -38,7 +38,7 @@
     flex-direction: column;
 }
 
-.input1 {
+.company-details-input-1 {
     display: flex;
     gap: 24px;
 }
@@ -47,7 +47,7 @@
     padding-bottom: 12px;
 }
 
-.input1 .input {
+.company-details-input-1 .input {
     flex: 2;
 }
 
@@ -55,13 +55,13 @@
     flex: 1;
 }
 
-.input-3 {
+.company-details-input-3 {
     display: flex;
     gap: 24px;
     width: 100%;
 }
 
-.input-3 > * {
+.company-details-input-3 > * {
     width: 100%;
 }
 

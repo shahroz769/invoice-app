@@ -39,7 +39,7 @@ const CompanyDetails = () => {
                         <h1>Company Details</h1>
                         <h3>Add your company details</h3>
                     </div>
-                    <div className="input1">
+                    <div className="company-details-input-1">
                         <Input
                             value={values.name}
                             onChange={handleChange}
@@ -59,7 +59,7 @@ const CompanyDetails = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="input-2">
+                    <div className="company-details-input-2">
                         <Input
                             value={values.address}
                             onChange={handleChange}
@@ -71,7 +71,7 @@ const CompanyDetails = () => {
                             touched={touched.address}
                         />
                     </div>
-                    <div className="input-3">
+                    <div className="company-details-input-3">
                         <Input
                             value={values.city}
                             onChange={handleChange}

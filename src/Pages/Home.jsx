@@ -1,19 +1,32 @@
+import { useState } from "react";
 import "./css/home.css";
 import addInvoiceIcon from "../assets/images/icon-add-invoice.svg";
 import noInvoicesIcon from "../assets/images/illustration-empty.svg";
 import SidePanel from "../Components/SidePanel";
 import Invoice from "../Components/invoice";
+import InvoicePanel from "../Components/InvoicePanel";
 const Home = () => {
+    const [showInvoicePanel, setShowInvoicePanel] = useState(false);
+    const toggleInvoicePanel = () => {
+        setShowInvoicePanel(!showInvoicePanel);
+    };
     return (
         <>
             <SidePanel />
+            <InvoicePanel
+                isOpen={showInvoicePanel}
+                onClose={toggleInvoicePanel}
+            />
             <div className="invoices-parent">
                 <div className="invoices-head">
                     <div className="invoices-title">
                         <h1>Invoices</h1>
                         <p>There are 7 total invoices</p>
                     </div>
-                    <div className="new-invoice-button">
+                    <div
+                        onClick={toggleInvoicePanel}
+                        className="new-invoice-button"
+                    >
                         <img src={addInvoiceIcon} alt="Add Invoice" />
                         <h4>New Invoice</h4>
                     </div>

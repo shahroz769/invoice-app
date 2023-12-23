@@ -23,6 +23,8 @@
     align-items: center;
     padding: 8px;
     gap: 16px;
+    cursor: pointer;
+    user-select: none;
 }
 
 .new-invoice-button h4 {
