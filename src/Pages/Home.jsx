@@ -38,15 +38,15 @@ const Home = () => {
                         <h4>New Invoice</h4>
                     </div> */}
                 </div>
-                {/* <div className="invoices-main">
+                <div className="invoices-main">
                     <Invoice />
                     <Invoice />
                     <Invoice />
                     <Invoice />
                     <Invoice />
                     <Invoice />
-                </div> */}
-                <div className="empty-invoices">
+                </div>
+                {/* <div className="empty-invoices">
                     <img src={noInvoicesIcon} alt="No Invoices" />
                     <h2>There is nothing here</h2>
                     <span>
@@ -54,7 +54,7 @@ const Home = () => {
                         <span style={{ fontWeight: "700" }}>New Invoice</span>{" "}
                         button and get started
                     </span>
-                </div>
+                </div> */}
             </div>
         </>
     );

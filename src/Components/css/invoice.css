@@ -4,6 +4,7 @@
     border-radius: 8px;
     width: 100%;
     align-items: center;
+    box-shadow: 0 10px 10px -10px #48549f1a;
 }
 
 .invoice-content {
@@ -58,7 +59,7 @@
     padding-right: 24px;
 }
 
-.items-error{
+.items-error {
     font-size: 13px;
     font-weight: 500;
     letter-spacing: -0.1px;

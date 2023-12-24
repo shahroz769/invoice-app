@@ -85,7 +85,10 @@ const InvoicePanel = ({ isOpen, onClose }) => {
                         exit={{
                             opacity: 0,
                         }}
-                        onClick={onClose}
+                        onClick={() => {
+                            discardInvoiceData();
+                            onClose();
+                        }}
                         className="invoice-panel-background"
                     ></motion.div>
                     <motion.div

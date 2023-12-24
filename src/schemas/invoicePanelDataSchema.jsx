@@ -8,7 +8,7 @@ export const invoicePanelDataSchema = () => {
         clientCity: yup.string().max(500).required("Required"),
         clientPostCode: yup.string().max(500).required("Required"),
         clientCountry: yup.string().max(500).required("Required"),
-        invoiceDate: yup.date().required("Required"),
+        invoiceDate: yup.string().required("Required"),
         paymentTerms: yup.number().required("Required"),
         projectDescription: yup.string().max(500).required("Required"),
         items: yup.array().of(

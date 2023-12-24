@@ -144,14 +144,26 @@ input {
     background-color: #7c5dfa0a !important;
 }
 
+.css-1vooibu-MuiSvgIcon-root {
+    width: 20px !important;
+    height: 20px !important;
+}
+
 .css-1vooibu-MuiSvgIcon-root,
 .css-1tkx1wf-MuiSvgIcon-root-MuiPickersCalendarHeader-switchViewIcon {
     fill: #7c5dfa !important;
 }
 
+.css-cyfsxc-MuiPickersCalendarHeader-labelContainer {
+    font-weight: 700 !important;
+    color: var(--8) !important;
+    line-height: normal !important;
+}
+
 .css-1k4oq0i-MuiPaper-root-MuiPickersPopper-paper {
     box-shadow: 0 10px 20px 0 #48549f40 !important;
     border-radius: 8px !important;
+    line-height: normal !important;
 }
 
 .css-jgls56-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
@@ -262,4 +274,39 @@ input {
 
 .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
     color: var(--8) !important;
+}
+
+/* ----- Scrollbar Styles For Firefox ----- */
+.invoice-panel-parent {
+    scrollbar-color: var(--5) transparent;
+    scrollbar-width: thin;
+}
+
+.invoice-panel-parent::-moz-scrollbar {
+    width: 8px;
+}
+
+.invoice-panel-parent::-moz-scrollbar-thumb {
+    background-color: var(--5);
+    border-radius: 4px;
+}
+
+.invoice-panel-parent::-moz-scrollbar-track {
+    background-color: transparent;
+}
+
+/* ----- Scrollbar Styles For Other Browsers ----- */
+.invoice-panel-parent::-webkit-scrollbar-track {
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+.invoice-panel-parent::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+}
+
+.invoice-panel-parent::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: var(--5);
 }
