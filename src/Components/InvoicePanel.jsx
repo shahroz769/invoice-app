@@ -29,6 +29,7 @@ const InvoicePanel = ({ isOpen, onClose }) => {
         handleSubmit,
         touched,
         setFieldValue,
+        resetForm,
         // setFieldTouched,
     } = useFormik({
         initialValues: {
@@ -49,6 +50,10 @@ const InvoicePanel = ({ isOpen, onClose }) => {
             actions.resetForm();
         },
     });
+
+    const discardInvoiceData = () => {
+        resetForm();
+    };
 
     const handleSaveClick = () => {
         console.log(errors);
@@ -73,10 +78,16 @@ const InvoicePanel = ({ isOpen, onClose }) => {
         <AnimatePresence>
             {isOpen && (
                 <form onSubmit={handleSubmit}>
-                    <div
+                    <motion.div
+                        key="invoice-panel-parent"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{
+                            opacity: 0,
+                        }}
                         onClick={onClose}
                         className="invoice-panel-background"
-                    ></div>
+                    ></motion.div>
                     <motion.div
                         key="invoice-panel"
                         initial={{ x: "-100%", opacity: 0, width: "400px" }}
@@ -98,7 +109,7 @@ const InvoicePanel = ({ isOpen, onClose }) => {
                                 stiffness: 250,
                                 damping: 50,
                             },
-                            width: 0,
+                            width: "400px",
                         }}
                         className="invoice-panel-parent"
                     >
@@ -339,6 +350,7 @@ const InvoicePanel = ({ isOpen, onClose }) => {
                         <div className="invoice-panel-buttons">
                             <div className="invoice-panel-buttons-left">
                                 <Button
+                                    onClick={discardInvoiceData}
                                     text="Discard"
                                     bgColor="#f9fafe"
                                     color="var(--7)"

@@ -6,7 +6,6 @@ import SidePanel from "../Components/SidePanel";
 import Invoice from "../Components/invoice";
 import InvoicePanel from "../Components/InvoicePanel";
 import Button from "../Components/Button";
-import { AnimatePresence } from "framer-motion";
 
 const Home = () => {
     const [showInvoicePanel, setShowInvoicePanel] = useState(false);
@@ -16,15 +15,10 @@ const Home = () => {
     return (
         <>
             <SidePanel />
-            <AnimatePresence>
-                {showInvoicePanel && (
-                    <InvoicePanel
-                        key="invoice-panel"
-                        isOpen={showInvoicePanel}
-                        onClose={toggleInvoicePanel}
-                    />
-                )}
-            </AnimatePresence>
+            <InvoicePanel
+                isOpen={showInvoicePanel}
+                onClose={toggleInvoicePanel}
+            />
             <div className="invoices-parent">
                 <div className="invoices-head">
                     <div className="invoices-title">
