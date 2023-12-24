@@ -1,7 +1,9 @@
 import { useState } from "react";
 import "./css/input.css";
-import { DatePicker } from "@mui/x-date-pickers";
 import { Select, MenuItem } from "@mui/material";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import dayjs from "dayjs";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const Input = ({
     label,
@@ -18,6 +20,7 @@ const Input = ({
 }) => {
     const [selectValue, setSelectValue] = useState(null);
     const inputError = error && touched;
+    const formattedValue = typeof value === "string" ? dayjs(value) : value;
     return (
         <div
             style={flex ? { flex: flex } : {}}
@@ -27,11 +30,8 @@ const Input = ({
                 <div className="label-head">
                     <p
                         style={{
-                            color: "var(--7)",
+                            color: error && touched ? "var(--9)" : "var(--7)",
                         }}
-                        // style={{
-                        //     color: error && touched ? "var(--9)" : "var(--7)",
-                        // }}
                     >
                         {label}
                     </p>
@@ -41,13 +41,15 @@ const Input = ({
                 </div>
             )}
             {label === "Invoice Date" ? (
-                <DatePicker
-                    value={value}
-                    onChange={(newValue) => {
-                        setFieldValue(id, newValue ? newValue : "");
-                    }}
-                    textField={(params) => <TextField {...params} />}
-                />
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker
+                        value={formattedValue}
+                        onChange={(newValue) => {
+                            setFieldValue(id, newValue ? newValue.$d : "");
+                        }}
+                        textField={(params) => <TextField {...params} />}
+                    />
+                </LocalizationProvider>
             ) : label === "Payment Terms" ? (
                 <Select
                     value={value}
@@ -66,7 +68,7 @@ const Input = ({
             ) : (
                 <input
                     className={inputError ? "error" : ""}
-                    // style={inputError ? { outline: "1px solid var(--9)" } : {}}
+                    style={inputError ? { outline: "1px solid var(--9)" } : {}}
                     value={value}
                     onChange={onChange}
                     onBlur={onBlur}

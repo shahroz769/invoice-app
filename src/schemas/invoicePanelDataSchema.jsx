@@ -1,12 +1,6 @@
 import * as yup from "yup";
 
-const generateItemValidationSchema = (index) => ({
-    [`itemName${index}`]: yup.string().max(500).required("itemError"),
-    [`qty${index}`]: yup.number().required("itemError"),
-    [`price${index}`]: yup.number().required("itemError"),
-});
-
-export const invoicePanelDataSchema = (itemsListCount) => {
+export const invoicePanelDataSchema = () => {
     return yup.object().shape({
         clientName: yup.string().max(500).required("Required"),
         clientEmail: yup.string().max(500).required("Required"),
@@ -17,8 +11,21 @@ export const invoicePanelDataSchema = (itemsListCount) => {
         invoiceDate: yup.date().required("Required"),
         paymentTerms: yup.number().required("Required"),
         projectDescription: yup.string().max(500).required("Required"),
-        ...Array.from({ length: itemsListCount }, (_, index) =>
-            generateItemValidationSchema(index + 1)
-        ).reduce((acc, curr) => ({ ...acc, ...curr }), {}),
+        items: yup.array().of(
+            yup.object().shape({
+                itemName: yup.string().required("Required"),
+                qty: yup
+                    .number()
+                    .typeError("Number")
+                    .positive("Positive")
+                    .integer("Integer")
+                    .required("Required"),
+                price: yup
+                    .number()
+                    .typeError("Number")
+                    .positive("Positive")
+                    .required("Required"),
+            })
+        ),
     });
 };

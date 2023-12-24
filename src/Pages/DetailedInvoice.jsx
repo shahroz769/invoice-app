@@ -1,10 +1,23 @@
+import { useState } from "react";
+import Dialog from "../Components/Dialog";
 import SidePanel from "../Components/SidePanel";
 import leftArrowIcon from "../assets/images/icon-arrow-left.svg";
 import "./css/detailedinvoice.css";
 
 const DetailedInvoice = () => {
+    const [showDialog, setShowDialog] = useState(false);
+    const handleDialogClose = () => {
+        setShowDialog(false);
+    };
+    console.log(showDialog);
     return (
         <>
+            {showDialog && (
+                <Dialog
+                    setShowDialog={setShowDialog}
+                    onClose={handleDialogClose}
+                />
+            )}
             <SidePanel />
             <div className="invoice-details-parent">
                 <div className="back-to-home">
@@ -23,7 +36,10 @@ const DetailedInvoice = () => {
                         <div className="invoice-edit">
                             <h4>Edit</h4>
                         </div>
-                        <div className="invoice-delete">
+                        <div
+                            onClick={() => setShowDialog(true)}
+                            className="invoice-delete"
+                        >
                             <h4>Delete</h4>
                         </div>
                         <div className="invoice-update">

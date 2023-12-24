@@ -1,41 +1,11 @@
 import "./css/invoicepanel.css";
 import Input from "../Components/Input";
-import { useState, useEffect } from "react";
 import deleteIcon from "../assets/images/icon-delete.svg";
 import { useFormik } from "formik";
 import { invoicePanelDataSchema } from "../schemas/invoicePanelDataSchema.jsx";
+import dayjs from "dayjs";
 
 const InvoicePanel = ({ isOpen, onClose }) => {
-    const [hasMatchingKeys, setHasMatchingKeys] = useState(false);
-    const [itemsListCount, setItemsListCount] = useState(1);
-    const [itemsListArray, setItemsListArray] = useState([
-        { serial: itemsListCount, itemName: "", qty: "", price: "" },
-    ]);
-
-    const addItemInput = () => {
-        setItemsListCount((prevCount) => prevCount + 1);
-        setItemsListArray((prevItemsListArray) => [
-            ...prevItemsListArray,
-            { serial: itemsListCount + 1, itemName: "", qty: "", price: "" },
-        ]);
-    };
-
-    const initialValues = {
-        clientName: "",
-        clientEmail: "",
-        clientAddress: "",
-        clientCity: "",
-        clientPostCode: "",
-        clientCountry: "",
-        invoiceDate: "",
-        paymentTerms: "",
-        projectDescription: "",
-        ...Array.from({ length: itemsListCount }, (_, index) => ({
-            [`itemName${index + 1}`]: "",
-            [`qty${index + 1}`]: "",
-            [`price${index + 1}`]: "",
-        })).reduce((acc, curr) => ({ ...acc, ...curr }), {}),
-    };
     const {
         values,
         errors,
@@ -44,32 +14,48 @@ const InvoicePanel = ({ isOpen, onClose }) => {
         handleSubmit,
         touched,
         setFieldValue,
+        // setFieldTouched,
     } = useFormik({
-        initialValues,
-        validationSchema: invoicePanelDataSchema(itemsListArray.length),
-        onSubmit: (values, actions) => {
-            console.log("Form submitted with values:", values);
-            actions.resetForm();
+        initialValues: {
+            clientName: "",
+            clientEmail: "",
+            clientAddress: "",
+            clientCity: "",
+            clientPostCode: "",
+            clientCountry: "",
+            invoiceDate: dayjs().format(),
+            paymentTerms: 1,
+            projectDescription: "",
+            items: [{ itemName: "", qty: "", price: "" }],
+        },
+        validationSchema: invoicePanelDataSchema,
+        onSubmit: (values) => {
+            console.log("Form values:", values);
         },
     });
 
     const handleSaveClick = () => {
-        // console.log(errors);
+        console.log(errors);
         handleSubmit();
     };
-    useEffect(() => {
-        const substringsToCheck = ["itemName", "qty", "price"];
-        const calculatedHasMatchingKeys = Object.keys(errors).some((key) =>
-            substringsToCheck.some((substring) => key.includes(substring))
-        );
-        setHasMatchingKeys(calculatedHasMatchingKeys);
-        console.log(calculatedHasMatchingKeys);
-    }, [errors]);
+
+    const handleAddItem = () => {
+        setFieldValue("items", [
+            ...values.items,
+            { itemName: "", qty: "", price: "" },
+        ]);
+    };
+
+    const handleRemoveItem = (index) => {
+        const items = [...values.items];
+        items.splice(index, 1);
+        setFieldValue("items", items);
+    };
 
     return (
         <>
             {isOpen && (
-                <>
+                <form onSubmit={handleSubmit}>
                     <div
                         onClick={onClose}
                         className="invoice-panel-background"
@@ -88,7 +74,6 @@ const InvoicePanel = ({ isOpen, onClose }) => {
                                     id="clientName"
                                     type="text"
                                     label="Client’s Name"
-                                    errors={errors}
                                 />
                             </div>
                             <div className="invoice-panel-input-2">
@@ -193,110 +178,84 @@ const InvoicePanel = ({ isOpen, onClose }) => {
                                     }}
                                 >
                                     Items List
-                                    {hasMatchingKeys && (
-                                        <span className="items-error">
-                                            Required
-                                        </span>
-                                    )}
                                 </h4>
-                                <div className="invoice-panel-items-names">
-                                    <div className="invoice-panel-items-names-header">
-                                        <p style={{ flex: "3" }}>Item Name</p>
-                                        <p style={{ flex: "1" }}>Qty.</p>
-                                        <p style={{ flex: "1" }}>Price</p>
-                                        <p style={{ flex: "1" }}>Total</p>
-                                    </div>
-                                    <div className="invoice-panel-items-remove"></div>
-                                </div>
                                 <div className="invoice-panel-items-names-body">
-                                    {itemsListArray.map((_, index) => (
+                                    {values.items.map((item, index) => (
                                         <div
                                             className="invoice-panel-items-names-inputs-parent"
-                                            key={index + 1}
+                                            key={index}
                                         >
                                             <div className="invoice-panel-items-names-inputs">
                                                 <Input
-                                                    flex="3"
-                                                    value={
-                                                        values[
-                                                            `itemName${
-                                                                index + 1
-                                                            }`
-                                                        ]
-                                                    }
+                                                    flex="2"
+                                                    value={item.itemName}
                                                     onChange={handleChange}
                                                     onBlur={handleBlur}
                                                     error={
-                                                        errors[
-                                                            `itemName${
-                                                                index + 1
-                                                            }`
-                                                        ]
+                                                        errors.items?.[index]
+                                                            ?.itemName
                                                     }
                                                     touched={
-                                                        touched[
-                                                            `itemName${
-                                                                index + 1
-                                                            }`
-                                                        ]
+                                                        touched.items?.[index]
+                                                            ?.itemName
                                                     }
-                                                    id={`itemName${index + 1}`}
+                                                    id={`items[${index}].itemName`}
                                                     type="text"
+                                                    label="Item Name"
                                                 />
                                                 <Input
                                                     flex="1"
-                                                    value={
-                                                        values[
-                                                            `qty${index + 1}`
-                                                        ]
-                                                    }
+                                                    value={item.qty}
                                                     onChange={handleChange}
                                                     onBlur={handleBlur}
                                                     error={
-                                                        errors[
-                                                            `qty${index + 1}`
-                                                        ]
+                                                        errors.items?.[index]
+                                                            ?.qty
                                                     }
                                                     touched={
-                                                        touched[
-                                                            `qty${index + 1}`
-                                                        ]
+                                                        touched.items?.[index]
+                                                            ?.qty
                                                     }
-                                                    id={`qty${index + 1}`}
+                                                    id={`items[${index}].qty`}
                                                     type="text"
+                                                    label="Qty."
                                                 />
                                                 <Input
                                                     flex="1"
-                                                    value={
-                                                        values[
-                                                            `price${index + 1}`
-                                                        ]
-                                                    }
+                                                    value={item.price}
                                                     onChange={handleChange}
                                                     onBlur={handleBlur}
                                                     error={
-                                                        errors[
-                                                            `price${index + 1}`
-                                                        ]
+                                                        errors.items?.[index]
+                                                            ?.price
                                                     }
                                                     touched={
-                                                        touched[
-                                                            `price${index + 1}`
-                                                        ]
+                                                        touched.items?.[index]
+                                                            ?.price
                                                     }
-                                                    id={`price${index + 1}`}
+                                                    id={`items[${index}].price`}
                                                     type="text"
+                                                    label="Price"
                                                 />
 
                                                 <h4
                                                     style={{
                                                         color: "var(--6)",
+                                                        paddingTop: "22px",
                                                     }}
                                                 >
                                                     400.00
                                                 </h4>
                                             </div>
-                                            <div className="invoice-panel-items-remove">
+                                            <div
+                                                onClick={() =>
+                                                    handleRemoveItem(index)
+                                                }
+                                                style={{
+                                                    paddingTop: "22px",
+                                                }}
+                                                className="invoice-panel-items-remove"
+                                            >
                                                 <img
                                                     src={deleteIcon}
                                                     alt="Delete"
@@ -306,7 +265,7 @@ const InvoicePanel = ({ isOpen, onClose }) => {
                                     ))}
                                 </div>
                                 <div
-                                    onClick={addItemInput}
+                                    onClick={handleAddItem}
                                     className="invoice-panel-add-new-item"
                                 >
                                     <h4>+ Add New Item</h4>
@@ -332,7 +291,7 @@ const InvoicePanel = ({ isOpen, onClose }) => {
                             </div>
                         </div>
                     </div>
-                </>
+                </form>
             )}
         </>
     );

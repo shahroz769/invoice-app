@@ -1,0 +1,10 @@
+.row {
+    display: flex;
+    align-items: center;
+}
+
+Form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

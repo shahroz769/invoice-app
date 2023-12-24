@@ -178,7 +178,7 @@ input {
     border-width: 1px !important;
 }
 
-.date-error{
+.date-error {
     border-color: var(--9) !important;
 }
 
@@ -253,6 +253,6 @@ input {
     height: auto !important;
 }
 
-.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root{
+.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
     color: var(--8) !important;
 }
