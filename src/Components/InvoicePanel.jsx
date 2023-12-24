@@ -7,6 +7,7 @@ import dayjs from "dayjs";
 import Button from "./Button.jsx";
 import { IconButton } from "@mui/material";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const InvoicePanel = ({ isOpen, onClose }) => {
     const [isHovered, setIsHovered] = useState(false);
@@ -43,7 +44,7 @@ const InvoicePanel = ({ isOpen, onClose }) => {
             items: [{ itemName: "", qty: "", price: "" }],
         },
         validationSchema: invoicePanelDataSchema,
-        onSubmit: (values) => {
+        onSubmit: (values, actions) => {
             console.log("Form values:", values);
             actions.resetForm();
         },
@@ -69,14 +70,38 @@ const InvoicePanel = ({ isOpen, onClose }) => {
     };
 
     return (
-        <>
+        <AnimatePresence>
             {isOpen && (
                 <form onSubmit={handleSubmit}>
                     <div
                         onClick={onClose}
                         className="invoice-panel-background"
                     ></div>
-                    <div className="invoice-panel-parent">
+                    <motion.div
+                        key="invoice-panel"
+                        initial={{ x: "-100%", opacity: 0, width: "400px" }}
+                        animate={{
+                            x: 0,
+                            transition: {
+                                type: "spring",
+                                stiffness: 250,
+                                damping: 40,
+                            },
+                            opacity: 1,
+                            width: "calc(50% + 104px)",
+                        }}
+                        exit={{
+                            opacity: 0,
+                            x: "-100%",
+                            transition: {
+                                type: "spring",
+                                stiffness: 250,
+                                damping: 50,
+                            },
+                            width: 0,
+                        }}
+                        className="invoice-panel-parent"
+                    >
                         <div className="invoice-panel-main">
                             <h2>New Invoice</h2>
                             <h4 style={{ color: "var(--1)" }}>Bill To</h4>
@@ -346,10 +371,10 @@ const InvoicePanel = ({ isOpen, onClose }) => {
                                 </div> */}
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </form>
             )}
-        </>
+        </AnimatePresence>
     );
 };
 

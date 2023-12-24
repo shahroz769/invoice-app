@@ -7,6 +7,7 @@ const Button = ({ text, bgColor, color, onClick, img }) => {
             variant="contained"
             onClick={onClick || null}
             sx={{
+                whiteSpace: "nowrap",
                 textTransform: "capitalize",
                 backgroundColor: bgColor || "var(--1)",
                 boxShadow: "none",

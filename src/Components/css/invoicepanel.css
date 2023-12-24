@@ -1,7 +1,7 @@
 .invoice-panel-parent {
     background-color: var(--0);
     height: 100svh;
-    width: 50%;
+    width: calc(50% + 104px);
     position: fixed;
     top: 0;
     left: 0;
