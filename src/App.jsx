@@ -2,6 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import DetailedInvoice from "./Pages/DetailedInvoice";
 import CompanyDetails from "./Pages/CompanyDetails";
+import Login from "./Pages/login";
+import Signup from "./Pages/signup";
 
 function App() {
     return (
@@ -12,8 +14,8 @@ function App() {
                 element={<DetailedInvoice />}
             />
             <Route path="/profile-details" element={<CompanyDetails />} />
-            <Route path="/login" element={<CompanyDetails />} />
-            <Route path="/signup" element={<CompanyDetails />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
         </Routes>
     );
 }

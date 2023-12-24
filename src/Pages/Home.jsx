@@ -5,6 +5,7 @@ import noInvoicesIcon from "../assets/images/illustration-empty.svg";
 import SidePanel from "../Components/SidePanel";
 import Invoice from "../Components/invoice";
 import InvoicePanel from "../Components/InvoicePanel";
+import Button from "../Components/Button";
 const Home = () => {
     const [showInvoicePanel, setShowInvoicePanel] = useState(false);
     const toggleInvoicePanel = () => {
@@ -23,13 +24,18 @@ const Home = () => {
                         <h1>Invoices</h1>
                         <p>There are 7 total invoices</p>
                     </div>
-                    <div
+                    <Button
+                        text="New Invoice"
+                        onClick={toggleInvoicePanel}
+                        img={addInvoiceIcon}
+                    />
+                    {/* <div
                         onClick={toggleInvoicePanel}
                         className="new-invoice-button"
                     >
                         <img src={addInvoiceIcon} alt="Add Invoice" />
                         <h4>New Invoice</h4>
-                    </div>
+                    </div> */}
                 </div>
                 {/* <div className="invoices-main">
                     <Invoice />

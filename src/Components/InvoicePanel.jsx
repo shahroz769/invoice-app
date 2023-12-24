@@ -1,11 +1,25 @@
 import "./css/invoicepanel.css";
 import Input from "../Components/Input";
-import deleteIcon from "../assets/images/icon-delete.svg";
+import DeleteIcon from "../assets/images/DeleteIcon.jsx";
 import { useFormik } from "formik";
 import { invoicePanelDataSchema } from "../schemas/invoicePanelDataSchema.jsx";
 import dayjs from "dayjs";
+import Button from "./Button.jsx";
+import { IconButton } from "@mui/material";
+import { useState } from "react";
 
 const InvoicePanel = ({ isOpen, onClose }) => {
+    const [isHovered, setIsHovered] = useState(false);
+    const [hoveredIndex, setHoveredIndex] = useState(null);
+
+    const handleMouseOver = (index) => {
+        setHoveredIndex(index);
+    };
+
+    const handleMouseOut = () => {
+        setHoveredIndex(null);
+    };
+
     const {
         values,
         errors,
@@ -31,6 +45,7 @@ const InvoicePanel = ({ isOpen, onClose }) => {
         validationSchema: invoicePanelDataSchema,
         onSubmit: (values) => {
             console.log("Form values:", values);
+            actions.resetForm();
         },
     });
 
@@ -48,6 +63,7 @@ const InvoicePanel = ({ isOpen, onClose }) => {
 
     const handleRemoveItem = (index) => {
         const items = [...values.items];
+        if (items.length === 1) return;
         items.splice(index, 1);
         setFieldValue("items", items);
     };
@@ -247,47 +263,87 @@ const InvoicePanel = ({ isOpen, onClose }) => {
                                                     400.00
                                                 </h4>
                                             </div>
-                                            <div
+                                            <IconButton
+                                                onMouseOver={() =>
+                                                    handleMouseOver(index)
+                                                }
+                                                onMouseOut={handleMouseOut}
+                                                className="invoice-panel-items-remove"
+                                                sx={{
+                                                    marginTop: "22px",
+                                                }}
                                                 onClick={() =>
                                                     handleRemoveItem(index)
                                                 }
-                                                style={{
-                                                    paddingTop: "22px",
-                                                }}
+                                            >
+                                                <DeleteIcon
+                                                    fill={
+                                                        index === hoveredIndex
+                                                            ? "var(--9)"
+                                                            : "#888EB0"
+                                                    }
+                                                />
+                                            </IconButton>
+                                            {/* <div
+                                                
+                                                
                                                 className="invoice-panel-items-remove"
                                             >
                                                 <img
                                                     src={deleteIcon}
                                                     alt="Delete"
                                                 />
-                                            </div>
+                                            </div> */}
                                         </div>
                                     ))}
                                 </div>
-                                <div
+                                <Button
+                                    text="+ Add New Item"
+                                    bgColor="#f9fafe"
+                                    color="var(--7)"
+                                    onClick={handleAddItem}
+                                />
+                                {/* <div
                                     onClick={handleAddItem}
                                     className="invoice-panel-add-new-item"
                                 >
                                     <h4>+ Add New Item</h4>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                         <div className="invoice-panel-buttons">
                             <div className="invoice-panel-buttons-left">
-                                <div className="invoice-panel-buttons-discard">
+                                <Button
+                                    text="Discard"
+                                    bgColor="#f9fafe"
+                                    color="var(--7)"
+                                />
+                                {/* <div className="invoice-panel-buttons-discard">
                                     <h4>Discard</h4>
-                                </div>
+                                </div> */}
                             </div>
                             <div className="invoice-panel-buttons-right">
-                                <div className="invoice-panel-buttons-draft">
+                                <Button
+                                    text="Save as Draft"
+                                    bgColor="#373b53"
+                                    color="var(--5)"
+                                />
+                                {/* <div className="invoice-panel-buttons-draft">
                                     <h4>Save as Draft</h4>
-                                </div>
-                                <div
+                                </div> */}
+                                <Button
+                                    text="Save & Send"
+                                    bgColor="var(--1)"
+                                    color="var(--0)"
+                                    onClick={handleSaveClick}
+                                />
+
+                                {/* <div
                                     onClick={handleSaveClick}
                                     className="invoice-panel-buttons-save"
                                 >
                                     <h4>Save & Send</h4>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>

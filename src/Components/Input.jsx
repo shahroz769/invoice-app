@@ -1,9 +1,10 @@
-import { useState } from "react";
 import "./css/input.css";
+import { useState } from "react";
 import { Select, MenuItem } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import IconPassword from "../assets/images/icon-password.svg";
 
 const Input = ({
     label,
@@ -11,6 +12,7 @@ const Input = ({
     error,
     onChange,
     onBlur,
+    onKeyDown,
     touched,
     id,
     type,
@@ -72,6 +74,7 @@ const Input = ({
                     value={value}
                     onChange={onChange}
                     onBlur={onBlur}
+                    onKeyDown={onKeyDown || null}
                     id={id}
                     type={type}
                     placeholder={placeholder || ""}

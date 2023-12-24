@@ -84,7 +84,7 @@ p {
     color: var(--8);
 }
 
-span {
+span:not(.MuiButtonBase-root span) {
     font-size: 13px;
     font-weight: 500;
     letter-spacing: -0.1px;
@@ -203,10 +203,17 @@ input {
 }
 
 .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root:not(.Mui-selected):hover {
-    background-color: #7c5dfa0a !important;
+    background-color: #7c5dfabf !important;
 }
 
-.MuiButtonBase-root .MuiTouchRipple-rippleVisible .MuiTouchRipple-child {
+.css-1u23akw-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected):focus {
+    background-color: #7c5dfa40 !important; /* Change this to your preferred ripple color */
+}
+
+.invoice-panel-input-5
+    .MuiButtonBase-root
+    .MuiTouchRipple-rippleVisible
+    .MuiTouchRipple-child {
     background-color: #7c5dfabf !important; /* Change this to your preferred ripple color */
 }
 

@@ -26,10 +26,17 @@
     border-radius: 100%;
 }
 
-.side-panel-theme {
-    padding-bottom: 24px;
+.side-panel-options {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
 }
 
-.side-panel-theme img {
-    margin: 0 auto;
+.side-panel-theme {
+    padding: 16px !important;
+}
+
+.side-panel-theme span {
+    color: #999999;
 }

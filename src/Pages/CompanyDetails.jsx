@@ -5,6 +5,7 @@ import "./css/companydetails.css";
 import galleryIcon from "../assets/images/icon-gallery.svg";
 import { useFormik } from "formik";
 import { companyDetailsSchema } from "../schemas/companyDetailsSchema.jsx";
+import Button from "../Components/Button.jsx";
 
 const CompanyDetails = () => {
     const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
@@ -105,12 +106,7 @@ const CompanyDetails = () => {
                     </div>
                 </div>
                 <div className="company-details-save">
-                    <div
-                        className="company-details-save-button"
-                        onClick={handleSaveClick}
-                    >
-                        <h4>Save</h4>
-                    </div>
+                    <Button text="Save" onClick={handleSaveClick} />
                 </div>
             </div>
         </>

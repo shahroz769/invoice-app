@@ -1,16 +1,20 @@
-import { useEffect, useState } from "react";
 import "./css/signup.css";
 import Input from "../Components/Input";
 import logoLarge from "../assets/images/logo-invoice.svg";
-import emailIcon from "../assets/images/icon-email.svg";
-import passwordIcon from "../assets/images/icon-password.svg";
-import userIcon from "../assets/images/icon-username.svg";
+import Button from "../Components/Button";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+    const navigate = useNavigate();
+
     const handleEnterKeyPress = (event) => {
         if (event.key === "Enter") {
             userSignUp();
         }
+    };
+
+    const userSignUp = () => {
+        console.log("Sign up user");
     };
 
     return (
@@ -25,71 +29,31 @@ const Signup = () => {
                 </div>
                 <div className="signup-fields">
                     <Input
-                        value={""}
-                        error={emailError || false}
+                        // value={""}
                         label="Email address"
-                        iconSrc={emailIcon}
-                        altText="Email"
-                        placeholderText="e.g. alex@email.com"
-                        onInputChange={(emailVal) => setEmail(emailVal)}
-                        onKeyPress={handleEnterKeyPress}
+                        placeholder="e.g. alex@email.com"
+                        onKeyDown={handleEnterKeyPress}
+                        type="email"
                     />
                     <Input
-                        value={userName}
-                        error={userNameError || false}
-                        label="User name"
-                        iconSrc={userIcon}
-                        altText="user name"
-                        placeholderText="At least 6 characters"
-                        onInputChange={(userVal) => setUserName(userVal)}
-                        onKeyPress={handleEnterKeyPress}
-                    />
-                    <Input
-                        value={password}
-                        error={passwordError || false}
                         label="Create password"
                         type="password"
-                        iconSrc={passwordIcon}
-                        altText="Password"
-                        placeholderText="At least 8 characters"
-                        onInputChange={(passVal) => setPassword(passVal)}
-                        onKeyPress={handleEnterKeyPress}
+                        placeholder="At least 8 characters"
+                        onKeyDown={handleEnterKeyPress}
                     />
                     <Input
-                        value={repeatPassword}
-                        error={repeatError || false}
                         label="Confirm password"
                         type="password"
-                        iconSrc={passwordIcon}
-                        altText="Confirm Password"
-                        placeholderText="At least 8 characters"
-                        onInputChange={(repPassVal) =>
-                            setRepeatPassword(repPassVal)
-                        }
-                        onKeyPress={handleEnterKeyPress}
+                        placeholder="At least 8 characters"
+                        onKeyDown={handleEnterKeyPress}
                     />
 
                     <Button
-                        disabled={disable}
-                        loadingText={disable && "Signing up..."}
-                        handleClick={userSignUp}
-                        buttonText="Signup"
+                        onClick={userSignUp}
+                        text="Sign up"
+                        bgColor={"var(--1)"}
                     />
-                    {/* <div className="continue-socials">
-                        <div className="line"></div>
-                        <h3>Or continue with</h3>
-                    </div>
-                    <div className="login-socials">
-                        <div className="login-with-google">
-                            <img src={googleLogoIcon} alt="Google Logo" />
-                            <h3>Google</h3>
-                        </div>
-                        <div className="login-with-github">
-                            <img src={githubLogoIcon} alt="Github Logo" />
-                            <h3>GitHub</h3>
-                        </div>
-                    </div> */}
-                    <p>
+                    <p className="auth-para">
                         Already have an account?{" "}
                         <span
                             onClick={() => navigate("/login")}

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "./css/dialog.css";
+import Button from "./Button";
 
 const Dialog = ({ setShowDialog, onClose }) => {
     useEffect(() => {
@@ -24,15 +25,27 @@ const Dialog = ({ setShowDialog, onClose }) => {
                     cannot be undone.
                 </p>
                 <div className="dialog-btn">
-                    <div className="invoice-edit" onClick={onClose}>
+                    <Button
+                        text="Cancel"
+                        bgColor="#F9FAFE"
+                        color="var(--7)"
+                        onClick={onClose}
+                    />
+                    {/* <div className="invoice-edit" onClick={onClose}>
                         <h4>Cancel</h4>
-                    </div>
-                    <div
+                    </div> */}
+                    <Button
+                        text="Delete"
+                        bgColor="var(--9)"
+                        color="var(--0)"
+                        onClick={() => setShowDialog(true)}
+                    />
+                    {/* <div
                         onClick={() => setShowDialog(true)}
                         className="invoice-delete"
                     >
                         <h4>Delete</h4>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

@@ -1,15 +1,20 @@
-import { useState, useEffect } from "react";
 import "./css/login.css";
+import Button from "../Components/Button";
 import Input from "../Components/Input";
 import logoLarge from "../assets/images/logo-invoice.svg";
-import emailIcon from "../assets/images/icon-email.svg";
-import passwordIcon from "../assets/images/icon-password.svg";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+    const navigate = useNavigate();
+
     const handleEnterKeyPress = (event) => {
         if (event.key === "Enter") {
             userLogin();
         }
+    };
+
+    const loginUser = () => {
+        console.log("Login User");
     };
 
     return (
@@ -24,47 +29,28 @@ const Login = () => {
                 </div>
                 <div className="login-fields">
                     <Input
-                        value={email}
-                        error={emailError}
-                        onInputChange={(emailVal) => setEmail(emailVal)}
+                        onChange={null}
+                        onBlur={null}
                         label="Email address"
-                        iconSrc={emailIcon}
-                        altText="Email"
-                        placeholderText="e.g. alex@email.com"
+                        placeholder="e.g. alex@email.com"
+                        type="email"
+                        onKeyDown={handleEnterKeyPress}
                     />
                     <Input
-                        value={password}
-                        error={passwordError}
-                        onInputChange={(passVal) => setPassword(passVal)}
+                        onChange={null}
+                        onBlur={null}
                         label="Password"
+                        placeholder="Enter your password"
                         type="password"
-                        iconSrc={passwordIcon}
-                        altText="Password"
-                        placeholderText="Enter your password"
-                        onKeyPress={handleEnterKeyPress}
+                        onKeyDown={handleEnterKeyPress}
                     />
 
                     <Button
-                        disabled={disable}
-                        loadingText={disable && "Logging in..."}
-                        handleClick={userLogin}
-                        buttonText="Login"
+                        onClick={loginUser}
+                        text="Login"
+                        bgColor={"var(--1)"}
                     />
-                    {/* <div className="continue-socials">
-                        <div className="line"></div>
-                        <h3>Or continue with</h3>
-                    </div>
-                    <div className="login-socials">
-                        <div className="login-with-google">
-                            <img src={googleLogoIcon} alt="Google Logo" />
-                            <h3>Google</h3>
-                        </div>
-                        <div className="login-with-github">
-                            <img src={githubLogoIcon} alt="Github Logo" />
-                            <h3>GitHub</h3>
-                        </div>
-                    </div> */}
-                    <p>
+                    <p className="auth-para">
                         Don’t have an account?{" "}
                         <span
                             onClick={() => navigate("/signup")}

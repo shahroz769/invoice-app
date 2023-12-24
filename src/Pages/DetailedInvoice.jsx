@@ -3,13 +3,15 @@ import Dialog from "../Components/Dialog";
 import SidePanel from "../Components/SidePanel";
 import leftArrowIcon from "../assets/images/icon-arrow-left.svg";
 import "./css/detailedinvoice.css";
+import Button from "../Components/Button";
+import { useNavigate } from "react-router-dom";
 
 const DetailedInvoice = () => {
+    const navigate = useNavigate();
     const [showDialog, setShowDialog] = useState(false);
     const handleDialogClose = () => {
         setShowDialog(false);
     };
-    console.log(showDialog);
     return (
         <>
             {showDialog && (
@@ -20,10 +22,17 @@ const DetailedInvoice = () => {
             )}
             <SidePanel />
             <div className="invoice-details-parent">
-                <div className="back-to-home">
+                <Button
+                    text="Go back"
+                    color="var(--8)"
+                    bgColor="transparent"
+                    img={leftArrowIcon}
+                    onClick={() => navigate("/")}
+                />
+                {/* <div className="back-to-home">
                     <img src={leftArrowIcon} alt="Left Arrow" />
                     <h4>Go back</h4>
-                </div>
+                </div> */}
                 <div className="invoice-details-crud">
                     <div className="invoice-details-status">
                         <span>Status</span>
@@ -33,18 +42,34 @@ const DetailedInvoice = () => {
                         </div>
                     </div>
                     <div className="invoice-details-edit">
-                        <div className="invoice-edit">
+                        <Button
+                            text="Edit"
+                            bgColor="#f9fafe"
+                            color="var(--7)"
+                        />
+                        {/* <div className="invoice-edit">
                             <h4>Edit</h4>
-                        </div>
-                        <div
+                        </div> */}
+                        <Button
+                            text="Delete"
+                            bgColor="var(--9)"
+                            color="var(--0)"
+                            onClick={() => setShowDialog(true)}
+                        />
+                        {/* <div
                             onClick={() => setShowDialog(true)}
                             className="invoice-delete"
                         >
                             <h4>Delete</h4>
-                        </div>
-                        <div className="invoice-update">
+                        </div> */}
+                        <Button
+                            text="Mark as Paid"
+                            bgColor="var(--1)"
+                            color="var(--0)"
+                        />
+                        {/* <div className="invoice-update">
                             <h4>Mark as Paid</h4>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className="invoice-details">
