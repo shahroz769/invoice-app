@@ -1,7 +1,10 @@
 import "./css/invoice.css";
-import iconArrowRight from "../assets/images/icon-arrow-right.svg"
+import { useNavigate } from "react-router-dom";
+import { IconButton } from "@mui/material";
+import iconArrowRight from "../assets/images/icon-arrow-right.svg";
 
 const Invoice = () => {
+    const navigate = useNavigate();
     return (
         <>
             <div className="invoice">
@@ -17,9 +20,12 @@ const Invoice = () => {
                         <h4>Paid</h4>
                     </div>
                 </div>
-                <div className="invoice-arrow">
+                <IconButton
+                    onClick={() => navigate("/invoice/" + "RT3080")}
+                    className="invoice-arrow"
+                >
                     <img src={iconArrowRight} alt="Right Arrow" />
-                </div>
+                </IconButton>
             </div>
         </>
     );

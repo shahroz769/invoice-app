@@ -12,7 +12,7 @@
     display: flex;
     gap: 40px;
     align-items: center;
-    padding: 17px 24px;
+    padding: 17px 16px 17px 24px;
     justify-content: center;
 }
 
@@ -53,10 +53,10 @@
 }
 
 .invoice-arrow {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-right: 24px;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-right: 16px !important;
 }
 
 .items-error {

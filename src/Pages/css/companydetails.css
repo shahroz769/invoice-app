@@ -7,6 +7,10 @@
     flex-direction: column;
 }
 
+.company-details-parent > button {
+    width: max-content;
+}
+
 .company-details-main {
     margin-top: 32px;
     background-color: var(--0);

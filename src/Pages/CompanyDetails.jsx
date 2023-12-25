@@ -1,13 +1,15 @@
-import Input from "../Components/Input";
-import leftArrowIcon from "../assets/images/icon-arrow-left.svg";
-import SidePanel from "../Components/SidePanel";
 import "./css/companydetails.css";
-import galleryIcon from "../assets/images/icon-gallery.svg";
+import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { companyDetailsSchema } from "../schemas/companyDetailsSchema.jsx";
+import SidePanel from "../Components/SidePanel";
+import Input from "../Components/Input";
 import Button from "../Components/Button.jsx";
+import leftArrowIcon from "../assets/images/icon-arrow-left.svg";
+import galleryIcon from "../assets/images/icon-gallery.svg";
 
 const CompanyDetails = () => {
+    const navigate = useNavigate();
     const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
         useFormik({
             initialValues: {
@@ -31,10 +33,17 @@ const CompanyDetails = () => {
         <>
             <SidePanel />
             <div className="company-details-parent">
-                <div className="back-to-home">
+                <Button
+                    text="Go back"
+                    color="var(--8)"
+                    bgColor="transparent"
+                    img={leftArrowIcon}
+                    onClick={() => navigate("/")}
+                />
+                {/* <div className="back-to-home">
                     <img src={leftArrowIcon} alt="Left Arrow" />
                     <h4>Go back</h4>
-                </div>
+                </div> */}
                 <div className="company-details-main">
                     <div className="company-details-head">
                         <h1>Company Details</h1>

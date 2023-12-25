@@ -21,7 +21,6 @@
     max-width: 480px;
     border-radius: 8px;
     padding: 48px;
-    animation: fadeInOut 0.3s ease;
 }
 
 .dialog h2 {
@@ -37,13 +36,4 @@
     display: flex;
     justify-content: flex-end;
     gap: 8px;
-}
-
-@keyframes fadeInOut {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
 }

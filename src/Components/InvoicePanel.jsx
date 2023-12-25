@@ -106,13 +106,13 @@ const InvoicePanel = ({ isOpen, onClose }) => {
                         }}
                         exit={{
                             opacity: 0,
-                            x: "-100%",
-                            transition: {
-                                type: "spring",
-                                stiffness: 250,
-                                damping: 50,
-                            },
-                            width: "400px",
+                            // x: "-100%",
+                            // transition: {
+                            //     type: "spring",
+                            //     stiffness: 250,
+                            //     damping: 50,
+                            // },
+                            // width: "400px",
                         }}
                         className="invoice-panel-parent"
                     >

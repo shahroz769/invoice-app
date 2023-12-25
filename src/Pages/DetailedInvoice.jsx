@@ -1,10 +1,11 @@
-import { useState } from "react";
-import Dialog from "../Components/Dialog";
-import SidePanel from "../Components/SidePanel";
-import leftArrowIcon from "../assets/images/icon-arrow-left.svg";
 import "./css/detailedinvoice.css";
-import Button from "../Components/Button";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import SidePanel from "../Components/SidePanel";
+import Dialog from "../Components/Dialog";
+import Button from "../Components/Button";
+import leftArrowIcon from "../assets/images/icon-arrow-left.svg";
 
 const DetailedInvoice = () => {
     const navigate = useNavigate();
@@ -14,12 +15,14 @@ const DetailedInvoice = () => {
     };
     return (
         <>
-            {showDialog && (
-                <Dialog
-                    setShowDialog={setShowDialog}
-                    onClose={handleDialogClose}
-                />
-            )}
+            <AnimatePresence>
+                {showDialog && (
+                    <Dialog
+                        setShowDialog={setShowDialog}
+                        onClose={handleDialogClose}
+                    />
+                )}
+            </AnimatePresence>
             <SidePanel />
             <div className="invoice-details-parent">
                 <Button
